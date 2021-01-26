@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Unit Converter</string>
+    <string name="output_Title">Output</string>
+    <string name="output"></string>
+    <string name="input_Title">Input</string>
+    <string name="input"></string>
+</resources>
