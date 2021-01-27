@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -18,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     int inputUnits;
     int outputUnits;
 
-    EditText tempInput;
+    EditText Input;
 
     TextView output;
 
@@ -38,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        input_Units = findViewById(R.id.input_Units);
-        output_Units = findViewById(R.id.output_Units);
+        input_Units = findViewById(R.id.input_Units_Spinner);
+        output_Units = findViewById(R.id.output_Units_Spinner);
 /*
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.units, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -47,9 +46,9 @@ public class MainActivity extends AppCompatActivity {
         input_Units.setAdapter(adapter);
         output_Units.setAdapter(adapter);
 */
-        tempInput = (EditText) findViewById(R.id.temp_Input);
+        Input = (EditText) findViewById(R.id.temp_Input);
 
-        output = (TextView) findViewById(R.id.output);
+        output = (TextView) findViewById(R.id.temp_Output);
 
         convertButton = (Button) findViewById(R.id.button);
         convertButton.setOnClickListener(v -> {
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             outputUnits = output_Units.getSelectedItemPosition();
 
             try {
-                temperature = Double.valueOf(tempInput.getText().toString());
+                temperature = Double.valueOf(Input.getText().toString());
 
                 //Call Convert method and output the answer
                 output.setText(Convert(temperature).toString());

@@ -11,11 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button"
-        app:layout_constraintBottom_toTopOf="@+id/output_Title"
+        app:layout_constraintBottom_toTopOf="@+id/middle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_Units"
-        app:layout_constraintVertical_bias="0.518" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75" />
 
     <TextView
         android:id="@+id/output_Title"
@@ -24,56 +24,71 @@
         android:layout_marginBottom="8dp"
         android:text="@string/output_Title"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/output"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/temp_Output"
+        app:layout_constraintEnd_toEndOf="@+id/temp_Output"
+        app:layout_constraintStart_toStartOf="@+id/temp_Output"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.996" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/output_Units_Title"
-        android:layout_width="wrap_content"
+        android:layout_width="39dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:text="@string/units"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/output"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Spinner
-        android:id="@+id/input_Units"
-        android:layout_width="100dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="8dp"
-        android:entries="@array/units"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/input_Units_Title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.158" />
+        app:layout_constraintBottom_toBottomOf="@+id/output_Units_Spinner"
+        app:layout_constraintEnd_toStartOf="@+id/output_Units_Spinner"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/temp_Output"
+        app:layout_constraintTop_toTopOf="@+id/output_Units_Spinner" />
 
     <EditText
         android:id="@+id/temp_Input"
-        android:layout_width="wrap_content"
+        android:layout_width="175dp"
         android:layout_height="50dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="@string/input"
         android:importantForAutofill="no"
         android:inputType="numberSigned|number|numberDecimal"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintEnd_toStartOf="@+id/centre"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.083" />
+        app:layout_constraintVertical_bias="0.123" />
+
+    <Spinner
+        android:id="@+id/input_Units_Spinner"
+        android:layout_width="100dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:entries="@array/units"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/temp_Input"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="@+id/temp_Input"
+        app:layout_constraintTop_toBottomOf="@+id/temp_Input"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/input_Units_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/units"
+        app:layout_constraintBottom_toBottomOf="@+id/input_Units_Spinner"
+        app:layout_constraintEnd_toStartOf="@+id/input_Units_Spinner"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/temp_Input"
+        app:layout_constraintTop_toTopOf="@+id/input_Units_Spinner" />
 
     <TextView
         android:id="@+id/input_Title"
@@ -83,50 +98,56 @@
         android:text="@string/input_Title"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/temp_Input"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/temp_Input"
+        app:layout_constraintStart_toStartOf="@+id/temp_Input"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
-        android:id="@+id/input_Units_Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/units"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/temp_Input"
-        app:layout_constraintVertical_bias="0.0" />
-
     <Spinner
-        android:id="@+id/output_Units"
+        android:id="@+id/output_Units_Spinner"
         android:layout_width="100dp"
         android:layout_height="25dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:entries="@array/units"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/output"
+        app:layout_constraintEnd_toEndOf="@+id/temp_Output"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="@+id/temp_Output"
+        app:layout_constraintTop_toBottomOf="@+id/temp_Output"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/output"
-        android:layout_width="210dp"
+        android:id="@+id/temp_Output"
+        android:layout_width="175dp"
         android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         android:text="@string/output"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/centre"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.464" />
+        app:layout_constraintVertical_bias="0.124" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/centre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/middle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
