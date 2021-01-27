@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             temperature = Double.valueOf(tempInput.getText().toString());
 
             //call Convert magic method
-
+            Toast.makeText(this, "IN Unit" + inputUnits + "OUT Unit" + outputUnits, Toast.LENGTH_SHORT).show();
 
             //output the answer
             output.setText(Convert(temperature).toString());
@@ -76,9 +76,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
             default: break;
         }
-        Toast.makeText(this, position, Toast.LENGTH_SHORT).show();
-
-
     }
 
     @Override
