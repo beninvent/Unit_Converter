@@ -8,7 +8,7 @@
     <string name="button">Convert</string>
     <string-array name="units">
         <item>Celsius</item>
-        <item>Kelvin</item>
         <item>Fahrenheit</item>
+        <item>Kelvin</item>
     </string-array>
 </resources>

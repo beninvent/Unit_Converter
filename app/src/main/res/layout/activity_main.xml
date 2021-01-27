@@ -38,24 +38,24 @@
         android:layout_marginTop="8dp"
         android:text="@string/units"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/output_Units"
-        app:layout_constraintHorizontal_bias="0.801"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/output"
         app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
         android:id="@+id/input_Units"
-        android:layout_width="75dp"
-        android:layout_height="25dp"
+        android:layout_width="100dp"
+        android:layout_height="28dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:entries="@array/units"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/input_Units_Title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/temp_Input"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.158" />
 
     <EditText
         android:id="@+id/temp_Input"
@@ -66,7 +66,7 @@
         android:ems="10"
         android:hint="@string/input"
         android:importantForAutofill="no"
-        android:inputType="numberSigned"
+        android:inputType="numberSigned|number|numberDecimal"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -96,17 +96,18 @@
         android:layout_marginTop="8dp"
         android:text="@string/units"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/input_Units"
-        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/temp_Input"
         app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
         android:id="@+id/output_Units"
-        android:layout_width="75dp"
+        android:layout_width="100dp"
         android:layout_height="25dp"
         android:layout_marginTop="8dp"
+        android:entries="@array/units"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

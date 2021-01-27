@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +11,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
     Double temperature;
 
@@ -24,10 +22,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     TextView output;
 
+
     Button convertButton;
 
     Spinner input_Units;
     Spinner output_Units;
+
+
 
 
 
@@ -39,47 +40,80 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         input_Units = findViewById(R.id.input_Units);
         output_Units = findViewById(R.id.output_Units);
-
+/*
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.units, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         input_Units.setAdapter(adapter);
-        input_Units.setOnItemSelectedListener(this);
         output_Units.setAdapter(adapter);
-        output_Units.setOnItemSelectedListener(this);
-
+*/
         tempInput = (EditText) findViewById(R.id.temp_Input);
+
         output = (TextView) findViewById(R.id.output);
+
         convertButton = (Button) findViewById(R.id.button);
         convertButton.setOnClickListener(v -> {
-            temperature = Double.valueOf(tempInput.getText().toString());
 
-            //call Convert magic method
-            Toast.makeText(this, "IN Unit" + inputUnits + "OUT Unit" + outputUnits, Toast.LENGTH_SHORT).show();
+            inputUnits = input_Units.getSelectedItemPosition();
+            outputUnits = output_Units.getSelectedItemPosition();
 
-            //output the answer
-            output.setText(Convert(temperature).toString());
+            try {
+                temperature = Double.valueOf(tempInput.getText().toString());
 
+                //Call Convert method and output the answer
+                output.setText(Convert(temperature).toString());
+            }
+            catch(Exception e) {
+               Toast.makeText(this, "Enter A number", Toast.LENGTH_SHORT).show();
+            }
         });
 
     }
 
     private Double Convert(Double input) {
-        return input;
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        switch(parent.getId()) {
-            case R.id.input_Units: inputUnits = position;
-            case R.id.output_Units: outputUnits = position;
+        Toast.makeText(this, "In " + inputUnits + " Out " + outputUnits, Toast.LENGTH_SHORT).show();
+        double output = 0;
+        final double fm = 1.8;
+        final int fa = 32;
+        final double ck = 273.15;
+        switch(inputUnits) {
+            case 0: switch(outputUnits) {
+                case 0: output = input;
+                    break;
+                case 1: output = (input * fm) + fa;
+                    break;
+                case 2: output = input + ck;
+                    break;
+                default:
+                    break;
+            }
                 break;
-            default: break;
+            case 1: switch(outputUnits) {
+                case 0: output = (input - fa) / 1.8;
+                    break;
+                case 1: output = input;
+                    break;
+                case 2: output = ((input - fa) / 1.8) + ck;
+                    break;
+                default:
+                    break;
+            }
+                break;
+            case 2: switch(outputUnits) {
+                case 0: output = input - ck;
+                    break;
+                case 1: output = ((input - ck) * fm) + 32;
+                    break;
+                case 2: output = input;
+                    break;
+                default:
+                    break;
+            }
+                break;
+            default:
+                break;
         }
+        return output;
     }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 }
