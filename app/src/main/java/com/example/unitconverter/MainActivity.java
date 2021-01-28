@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
             inputUnits = input_Units.getSelectedItemPosition();
             outputUnits = output_Units.getSelectedItemPosition();
 
+            output.setText("");
+
             try {
                 temperature = Double.valueOf(Input.getText().toString());
 
