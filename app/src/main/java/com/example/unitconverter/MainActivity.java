@@ -60,10 +60,13 @@ public class MainActivity extends AppCompatActivity {
                 temperature = Double.valueOf(Input.getText().toString());
 
                 //Call Convert method and output the answer
-                output.setText(Convert(temperature).toString());
+                String outputString;
+                outputString = String.format("%.2f", Convert(temperature));
+
+                output.setText(outputString);
             }
             catch(Exception e) {
-               Toast.makeText(this, "Enter A number", Toast.LENGTH_SHORT).show();
+               Toast.makeText(this, "Enter a Number", Toast.LENGTH_SHORT).show();
             }
         });
 
