@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Unit Converter</string>
     <string name="output_Title">Output</string>
-    <string name="output">Output Temp</string>
     <string name="input_Title">Input</string>
     <string name="units">Units</string>
     <string name="input">Temperature (22.5)</string>

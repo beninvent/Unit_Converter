@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Double Convert(Double input) {
-        Toast.makeText(this, "In " + inputUnits + " Out " + outputUnits, Toast.LENGTH_SHORT).show();
         double output = 0;
         final double fm = 1.8;
         final int fa = 32;
