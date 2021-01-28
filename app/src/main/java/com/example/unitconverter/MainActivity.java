@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
     private Double Convert(Double input) {
         double output = 0;
         final double fm = 1.8;
