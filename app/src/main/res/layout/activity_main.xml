@@ -25,8 +25,10 @@
         android:background="@color/teal_700"
         app:layout_constraintBottom_toTopOf="@+id/middle"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/button"
@@ -85,6 +87,8 @@
         android:hint="@string/input"
         android:importantForAutofill="no"
         android:inputType="numberSigned|number|numberDecimal"
+        android:singleLine="true"
+
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/centre"

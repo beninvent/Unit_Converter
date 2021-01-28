@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.inputmethod.EditorInfo;
+import android.view.KeyEvent;
 
 import java.util.Locale;
 
@@ -19,8 +21,10 @@ public class MainActivity extends AppCompatActivity {
     int inputUnits;
     int outputUnits;
 
-    EditText Input;
+    EditText input;
     TextView output;
+
+    Button convert;
 
     Spinner input_Units;
     Spinner output_Units;
@@ -33,19 +37,33 @@ public class MainActivity extends AppCompatActivity {
         input_Units = findViewById(R.id.input_Units_Spinner);
         output_Units = findViewById(R.id.output_Units_Spinner);
 
-        Input = (EditText) findViewById(R.id.temp_Input);
-        output = (TextView) findViewById(R.id.temp_Output);
+        input = findViewById(R.id.temp_Input);
+        output = findViewById(R.id.temp_Output);
+
+        convert = findViewById(R.id.button);
+
+        input.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    convert.performClick();
+                    return true;
+                }
+                return false;
+            }
+        });
 
     }
 
     public void convertButtonClick(View view) {
+
         inputUnits = input_Units.getSelectedItemPosition();
         outputUnits = output_Units.getSelectedItemPosition();
 
         output.setText("");
 
         try {
-            temperature = Double.valueOf(Input.getText().toString());
+            temperature = Double.valueOf(input.getText().toString());
 
             //Call Convert method and output the answer
             String outputString = String.format("%.2f", Convert(temperature));
