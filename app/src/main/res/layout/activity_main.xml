@@ -34,8 +34,8 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button"
         android:onClick="convertButtonClick"
+        android:text="@string/button"
         app:backgroundTint="@color/teal_200"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="@+id/view"
@@ -51,25 +51,28 @@
         android:background="@color/teal_200"
         android:text="@string/output_Title"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/temp_Output"
-        app:layout_constraintEnd_toEndOf="@+id/temp_Output"
-        app:layout_constraintHorizontal_bias="0.485"
-        app:layout_constraintStart_toStartOf="@+id/temp_Output"
+        app:layout_constraintBottom_toTopOf="@+id/output_Background"
+        app:layout_constraintEnd_toEndOf="@+id/output_Background"
+        app:layout_constraintStart_toStartOf="@+id/output_Background"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.792" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/output_Units_Title"
         android:layout_width="39dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/teal_200"
         android:text="@string/units"
         app:layout_constraintBottom_toBottomOf="@+id/output_Units_Spinner"
         app:layout_constraintEnd_toStartOf="@+id/output_Units_Spinner"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/temp_Output"
+        app:layout_constraintStart_toStartOf="@+id/output_Background"
         app:layout_constraintTop_toTopOf="@+id/output_Units_Spinner" />
 
     <EditText
@@ -154,11 +157,11 @@
         android:background="#BFFFFFFF"
         android:entries="@array/units"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/temp_Output"
+        app:layout_constraintEnd_toEndOf="@+id/output_Background"
         app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintStart_toStartOf="@+id/temp_Output"
-        app:layout_constraintTop_toBottomOf="@+id/temp_Output"
-        app:layout_constraintVertical_bias="0.01999998" />
+        app:layout_constraintStart_toStartOf="@+id/output_Background"
+        app:layout_constraintTop_toBottomOf="@+id/output_Background"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/output_Background"
@@ -188,8 +191,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/output_Background"
         app:layout_constraintEnd_toEndOf="@+id/output_Background"
         app:layout_constraintStart_toStartOf="@+id/output_Background"
-        app:layout_constraintTop_toTopOf="@+id/output_Background"
-        app:layout_constraintVertical_bias="0.53" />
+        app:layout_constraintTop_toTopOf="@+id/output_Background" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/centre"
