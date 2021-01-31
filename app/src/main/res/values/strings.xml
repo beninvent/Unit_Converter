@@ -3,7 +3,7 @@
     <string name="output_Title">Output</string>
     <string name="input_Title">Input</string>
     <string name="units">Units</string>
-    <string name="input">Temperature (22.5)</string>
+    <string name="hint">Temperature (22.5)</string>
     <string name="button">Convert</string>
     <string-array name="units">
         <item>Celsius</item>

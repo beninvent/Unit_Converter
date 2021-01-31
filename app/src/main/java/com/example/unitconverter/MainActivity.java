@@ -1,114 +1,122 @@
 package com.example.unitconverter;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.view.inputmethod.EditorInfo;
-import android.view.KeyEvent;
 
-import java.util.Locale;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    //Benjamin Thiessen
+    //Jan. 31, 2020
 
-    Double temperature;
-    int inputUnits;
-    int outputUnits;
+    private EditText input;//where the input number comes from
+    private TextView output;//where the output number goes to
 
-    EditText input;
-    TextView output;
+    private Spinner input_Units;//where the input units comes from
+    private Spinner output_Units;//where the output units comes from
 
-    Button convert;
-
-    Spinner input_Units;
-    Spinner output_Units;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //set where the input units comes from
         input_Units = findViewById(R.id.input_Units_Spinner);
         output_Units = findViewById(R.id.output_Units_Spinner);
 
+        //set up a listener to know when the units update
+        input_Units.setOnItemSelectedListener(this);
+        output_Units.setOnItemSelectedListener(this);
+
+        //set where the input number comes from
+        //and where the output number goes to
         input = findViewById(R.id.temp_Input);
         output = findViewById(R.id.temp_Output);
 
-        convert = findViewById(R.id.button);
-
-        input.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+        //Listen for when the input has changed
+        TextWatcher input_Watcher = new TextWatcher() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    convert.performClick();
-                    return true;
-                }
-                return false;
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            @Override
+            public void afterTextChanged(Editable s) {
+                //When the input changes perform the conversion
+                performConvert();
             }
-        });
-
+        };
+        input.addTextChangedListener(input_Watcher);
     }
 
-    public void convertButtonClick(View view) {
 
-        inputUnits = input_Units.getSelectedItemPosition();
-        outputUnits = output_Units.getSelectedItemPosition();
+    public void performConvert() {
 
-        output.setText("");
+        //Set the input and output units
+        int inputUnits = input_Units.getSelectedItemPosition();
+        int outputUnits = output_Units.getSelectedItemPosition();
 
         try {
-            temperature = Double.valueOf(input.getText().toString());
+            //Get temperature to convert
+            double temperature = Double.valueOf(input.getText().toString());
 
             //Call Convert method and output the answer
-            String outputString = String.format("%.2f", Convert(temperature));
+            @SuppressLint("DefaultLocale") String outputString;
+            outputString = String.format("%.2f", convert(temperature, inputUnits, outputUnits));
 
             output.setText(outputString);
         }
         catch(Exception e) {
-            Toast.makeText(this, "Enter a Number", Toast.LENGTH_SHORT).show();
+            //if nothing is entered set the output to nothing
+            output.setText("");
         }
     }
 
-    private Double Convert(Double input) {
-        double output = 0;
+
+    private Double convert(Double in, int inUnits, int outUnits) {
+        //output variable
+        double out = 0;
+        //Conversion values
         final double fm = 1.8;
         final int fa = 32;
         final double ck = 273.15;
-        switch(inputUnits) {
-            case 0: switch(outputUnits) {
-                case 0: output = input;
+        //Conversion Logic
+        switch(inUnits) {
+            case 0: switch(outUnits) {
+                case 0: out = in;
                     break;
-                case 1: output = (input * fm) + fa;
+                case 1: out = (in * fm) + fa;
                     break;
-                case 2: output = input + ck;
-                    break;
-                default:
-                    break;
-            }
-                break;
-            case 1: switch(outputUnits) {
-                case 0: output = (input - fa) / 1.8;
-                    break;
-                case 1: output = input;
-                    break;
-                case 2: output = ((input - fa) / 1.8) + ck;
+                case 2: out = in + ck;
                     break;
                 default:
                     break;
             }
                 break;
-            case 2: switch(outputUnits) {
-                case 0: output = input - ck;
+            case 1: switch(outUnits) {
+                case 0: out = (in - fa) / 1.8;
                     break;
-                case 1: output = ((input - ck) * fm) + 32;
+                case 1: out = in;
                     break;
-                case 2: output = input;
+                case 2: out = ((in - fa) / 1.8) + ck;
+                    break;
+                default:
+                    break;
+            }
+                break;
+            case 2: switch(outUnits) {
+                case 0: out = in - ck;
+                    break;
+                case 1: out = ((in - ck) * fm) + 32;
+                    break;
+                case 2: out = in;
                     break;
                 default:
                     break;
@@ -117,7 +125,16 @@ public class MainActivity extends AppCompatActivity {
             default:
                 break;
         }
-        return output;
+        //out put converted number
+        return out;
     }
 
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        //when input or output units change perform a conversion
+        performConvert();
+    }
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) { }
 }
